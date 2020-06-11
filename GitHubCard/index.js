@@ -3,7 +3,21 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+// set up a GET request
 
+axios.
+
+get('https://api.github.com/users/Caleno83')
+
+.then((res) => {
+  console.log('This is the response : ', res);
+  const response = res.data
+  cards.appendChild(mainProfileCard(response))
+})
+
+.catch((err) => {
+  console.log('The error is :', err);
+});
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -16,7 +30,7 @@
   STEP 4: Pass the data received from Github into your function,
     and append the returned markup to the DOM as a child of .cards
 */
-
+const cards = document.querySelector('.cards');
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -50,6 +64,55 @@ const followersArray = [];
     </div>
 */
 
+function mainProfileCard (obj) {
+
+  //creating elements
+  const card = document.createElement('div');
+  const img = document.createElement('img');
+  const cardInfo = document.createElement('div');
+  const nameTitle = document.createElement('h3');
+  const usernamePara = document.createElement('p');
+  const locationPara = document.createElement('p')
+  const profilePara = document.createElement('p');
+  const profileAnchor = document.createElement('a');
+  const followersPara = document.createElement('p');
+  const followingPara = document.createElement('p');
+  const bioPara = document.createElement('p');
+
+  //adding classes to elements
+
+  card.classList.add('card');
+  cardInfo.classList.add('card-info');
+  nameTitle.classList.add('name');
+  usernamePara.classList.add('username');
+
+  //adding parent element to child elements
+  card.appendChild(img);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(nameTitle);
+  cardInfo.appendChild(usernamePara);
+  cardInfo.appendChild(locationPara);
+  cardInfo.appendChild(profilePara);
+  profilePara.appendChild(profileAnchor);
+  cardInfo.appendChild(followersPara);
+  cardInfo.appendChild(followingPara);
+  cardInfo.appendChild(bioPara);
+
+  img.src =  obj.avatar_url;
+  nameTitle.textContent = obj.name;
+  usernamePara.textContent = `Username : ${obj.login}`;
+  locationPara.textContent = obj.location;
+  profileAnchor.textContent = `Website : ${obj.html_url}`;
+  followersPara.textContent = `Followers : ${obj.followers}`;
+  followingPara.textContent = `Following : ${obj.following}`;
+  bioPara.textContent = obj.bio;
+
+  return card
+
+};
+
+// console.log to check structure of html
+//console.log(mainProfileCard())
 /*
   List of LS Instructors Github username's:
     tetondan

@@ -46,6 +46,23 @@ const cards = document.querySelector('.cards');
 const followersArray = [ "tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
 
 //Set up Get request for followers 
+// this was for my followers, but I only have one.
+// axios
+  
+//   .get("https://api.github.com/users/Caleno83/followers")
+  
+//   .then((res) => {
+//     console.log('This is the response : ', res);
+//     const response = res.data
+//     response.forEach((url) => {
+//      cards.appendChild(mainProfileCard(url))
+//     })
+//   })
+  
+//   .catch((err) => {
+
+//     console.log('The error is :', err)
+//   })
 
 
 followersArray.forEach(element => {
